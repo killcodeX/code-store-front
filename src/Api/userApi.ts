@@ -1,8 +1,8 @@
 import axios from "axios";
 import { notification } from "antd";
 
-const baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:5000" : "";
+const baseURL:string =
+  process.env.NODE_ENV === "development" ? "http://localhost:5000" : "https://code-store-back.vercel.app";
 
 export const ApiFunc = axios.create({ baseURL: baseURL });
 
