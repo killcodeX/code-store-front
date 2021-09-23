@@ -125,7 +125,7 @@ export default function Home() {
               />
             </NoDataBanner>
           ) : (
-            posts.map((item: Post) => {
+            posts?.map((item: Post) => {
               return (
                 <div key={item._id} className="col-sm-4 mb-4">
                   <CodeCard item={item} />
