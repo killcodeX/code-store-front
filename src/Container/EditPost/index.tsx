@@ -1,5 +1,4 @@
 import React from "react";
-import { languages } from "../../Helpers/fakeData";
 import { useFormik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import Modal from "../../Components/Modal";
 import { getEditPostodal, editPost } from "../../Redux/Actions/postActions";
 import { Post } from "../../Interface/interface";
 import { ModalHead, FormLabel } from "./style";
+import { PostSchema } from "../../Interface/schema";
 
 export default function EditPost() {
   const display = useSelector((state: any) => state.post.editP);
@@ -14,36 +14,14 @@ export default function EditPost() {
   const allLang = useSelector((state: any) => state.post.allLang);
   const dispatch = useDispatch();
 
-  const validate = (values: Post) => {
-    const errors: Post = {};
-
-    if (!values.title) {
-      errors.title = "Required";
-    }
-
-    if (!values.description) {
-      errors.description = "Required";
-    }
-
-    if (!values.language) {
-      errors.language = "Required";
-    }
-
-    if (!values.code) {
-      errors.code = "Required";
-    }
-
-    return errors;
-  };
-
   const formik = useFormik({
     initialValues: {
       title: post?.title,
       description: post?.description,
       language: post?.language,
       code: post?.code,
-    },
-    validate: validate,
+    } as Post,
+    validationSchema: PostSchema,
     enableReinitialize: true,
     onSubmit: (values: Post, { resetForm }) => {
       dispatch(editPost({ ...values, id: post._id }));
@@ -62,7 +40,7 @@ export default function EditPost() {
             placeholder="Enter title"
             value={formik.values.title}
             onChange={formik.handleChange}
-            // isInvalid={formik.errors.title}
+            isInvalid={formik.errors.title != ""}
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.title}
@@ -76,7 +54,7 @@ export default function EditPost() {
             placeholder="Enter Code description"
             value={formik.values.description}
             onChange={formik.handleChange}
-            // isInvalid={formik.errors.desc}
+            isInvalid={formik.errors.description != ""}
           />
         </Form.Group>
         <Form.Control.Feedback type="invalid">
@@ -88,7 +66,7 @@ export default function EditPost() {
             as="select"
             value={formik.values.language}
             onChange={formik.handleChange}
-            // isInvalid={formik.errors.language}
+            isInvalid={formik.errors.language != ""}
           >
             <option value="">Select Any language</option>
             {allLang.map((item: any) => {
@@ -111,14 +89,14 @@ export default function EditPost() {
             placeholder="Enter Code"
             value={formik.values.code}
             onChange={formik.handleChange}
-            // isInvalid={formik.errors.code}
+            isInvalid={formik.errors.code != ""}
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.code}
           </Form.Control.Feedback>
         </Form.Group>
         <Button variant="primary" type="submit">
-          Save Snippet
+          Save Changes
         </Button>
       </Form>
     </Modal>

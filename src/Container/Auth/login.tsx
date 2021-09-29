@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { login } from "../../Interface/interface";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { LoginSchema } from "../../Interface/schema";
 import {
   SectionWrapper,
   CardWrapper,
@@ -18,25 +19,12 @@ export default function Login() {
   const history = useHistory();
   const [load, setLoad] = useState(false);
 
-  const validate = (values: login) => {
-    const errors: login = {};
-
-    if (!values.email) {
-      errors.email = "Required";
-    }
-
-    if (!values.password) {
-      errors.password = "Required";
-    }
-    return errors;
-  };
-
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-    },
-
+    } as login,
+    validationSchema: LoginSchema,
     onSubmit: (values, { resetForm }) => {
       setLoad(true);
       dispatch(receiveLogin(values, history));
@@ -61,7 +49,7 @@ export default function Login() {
                   placeholder="Enter email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
-                  //   isInvalid={formik.errors.email}
+                  isInvalid={formik.errors.email != ""}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.email}
@@ -78,7 +66,7 @@ export default function Login() {
                   placeholder="Password"
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                  //   isInvalid={formik.errors.password}
+                  isInvalid={formik.errors.password != ""}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.password}

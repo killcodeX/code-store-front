@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { SignUp } from "../../Interface/interface";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { RegistrationSchema } from "../../Interface/schema";
 import {
   SectionWrapper,
   CardWrapper,
@@ -18,27 +19,14 @@ export default function Register() {
   const history = useHistory()
   const [load, setLoad] = useState(false);
 
-  const validate = (values: SignUp) => {
-    const errors: SignUp = {};
-
-    if (!values.email) {
-      errors.email = "Required";
-    }
-
-    if (!values.password) {
-      errors.password = "Required";
-    }
-    return errors;
-  };
-
   const formik = useFormik({
     initialValues: {
       fname: "",
       lname: "",
       email: "",
       password: "",
-    },
-
+    } as SignUp,
+    validationSchema: RegistrationSchema,
     onSubmit: (values: SignUp, { resetForm }) => {
       setLoad(true);
       dispatch(receiveSignUp(values, history))
@@ -65,7 +53,7 @@ export default function Register() {
                       placeholder="Enter first name"
                       value={formik.values.fname}
                       onChange={formik.handleChange}
-                      //   isInvalid={formik.errors.email}
+                      isInvalid={formik.errors.fname != ""}
                     />
                     <Form.Control.Feedback type="invalid">
                       {formik.errors.fname}
@@ -80,10 +68,10 @@ export default function Register() {
                       placeholder="Enter last name"
                       value={formik.values.lname}
                       onChange={formik.handleChange}
-                      //   isInvalid={formik.errors.email}
+                      isInvalid={formik.errors.lname != ""}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.email}
+                      {formik.errors.lname}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </div>
@@ -95,7 +83,7 @@ export default function Register() {
                   placeholder="Enter email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
-                  //   isInvalid={formik.errors.email}
+                  isInvalid={formik.errors.email != ""}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.email}
@@ -112,7 +100,7 @@ export default function Register() {
                   placeholder="Password"
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                  //   isInvalid={formik.errors.password}
+                  isInvalid={formik.errors.password != ""}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.password}
