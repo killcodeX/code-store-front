@@ -29,10 +29,12 @@ export default function Home() {
   const search = useSelector((state: any) => state.post.searchP);
   const searchData = useSelector((state: any) => state.post.searchPost);
   const posts = useSelector((state: any) => state.post.allPost);
+  const firstTimeUser = useSelector((state: any) => state.auth.firstTimeUser);
 
   useEffect(() => {
     dispatch(getAllPost());
     dispatch(getAllLangauge());
+    //console.log("called");
   }, []);
 
   if (filter) {
@@ -125,7 +127,7 @@ export default function Home() {
               />
             </NoDataBanner>
           ) : (
-            posts?.map((item: Post) => {
+            posts.map((item: Post) => {
               return (
                 <div key={item._id} className="col-sm-4 mb-4">
                   <CodeCard item={item} />

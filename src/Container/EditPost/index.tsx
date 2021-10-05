@@ -25,6 +25,7 @@ export default function EditPost() {
     enableReinitialize: true,
     onSubmit: (values: Post, { resetForm }) => {
       dispatch(editPost({ ...values, id: post._id }));
+      dispatch(getEditPostodal("closeModal"));
       //resetForm({ values: "" });
     },
   });
@@ -40,7 +41,9 @@ export default function EditPost() {
             placeholder="Enter title"
             value={formik.values.title}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.title != ""}
+            isInvalid={
+              formik.errors.title != "" && formik.errors.title != undefined
+            }
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.title}
@@ -54,7 +57,10 @@ export default function EditPost() {
             placeholder="Enter Code description"
             value={formik.values.description}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.description != ""}
+            isInvalid={
+              formik.errors.description != "" &&
+              formik.errors.description != undefined
+            }
           />
         </Form.Group>
         <Form.Control.Feedback type="invalid">
@@ -66,7 +72,10 @@ export default function EditPost() {
             as="select"
             value={formik.values.language}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.language != ""}
+            isInvalid={
+              formik.errors.language != "" &&
+              formik.errors.language != undefined
+            }
           >
             <option value="">Select Any language</option>
             {allLang.map((item: any) => {
@@ -89,7 +98,9 @@ export default function EditPost() {
             placeholder="Enter Code"
             value={formik.values.code}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.code != ""}
+            isInvalid={
+              formik.errors.code != "" && formik.errors.code != undefined
+            }
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.code}

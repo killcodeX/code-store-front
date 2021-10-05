@@ -35,7 +35,8 @@ export default function Register() {
       }, 4000)
       //   resetForm({ values: "" });
     },
-  });
+  }); 
+
   return (
     <SectionWrapper src={process.env.PUBLIC_URL + "/assets/outdoor.png"}>
       <div className="container">
@@ -53,7 +54,7 @@ export default function Register() {
                       placeholder="Enter first name"
                       value={formik.values.fname}
                       onChange={formik.handleChange}
-                      isInvalid={formik.errors.fname != ""}
+                      isInvalid={formik.errors.fname != "" && formik.errors.fname != undefined}
                     />
                     <Form.Control.Feedback type="invalid">
                       {formik.errors.fname}
@@ -68,7 +69,7 @@ export default function Register() {
                       placeholder="Enter last name"
                       value={formik.values.lname}
                       onChange={formik.handleChange}
-                      isInvalid={formik.errors.lname != ""}
+                      isInvalid={formik.errors.lname != "" && formik.errors.lname != undefined}
                     />
                     <Form.Control.Feedback type="invalid">
                       {formik.errors.lname}
@@ -83,7 +84,7 @@ export default function Register() {
                   placeholder="Enter email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
-                  isInvalid={formik.errors.email != ""}
+                  isInvalid={formik.errors.email != "" && formik.errors.email != undefined}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.email}
@@ -100,7 +101,7 @@ export default function Register() {
                   placeholder="Password"
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                  isInvalid={formik.errors.password != ""}
+                  isInvalid={formik.errors.password != "" && formik.errors.password != undefined}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.password}

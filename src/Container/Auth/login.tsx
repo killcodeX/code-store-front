@@ -34,6 +34,7 @@ export default function Login() {
       //resetForm({ values: "" });
     },
   });
+
   return (
     <SectionWrapper src={process.env.PUBLIC_URL + "/assets/outdoor.png"}>
       <div className="container">
@@ -49,7 +50,7 @@ export default function Login() {
                   placeholder="Enter email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
-                  isInvalid={formik.errors.email != ""}
+                  isInvalid={formik.errors.email != "" && formik.errors.email != undefined}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.email}
@@ -66,7 +67,7 @@ export default function Login() {
                   placeholder="Password"
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                  isInvalid={formik.errors.password != ""}
+                  isInvalid={formik.errors.password != "" && formik.errors.password != undefined}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.password}

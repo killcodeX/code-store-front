@@ -1,9 +1,9 @@
 import {
-    LOGIN_SUCCESS,
-    SIGNUP_SUCCESS,
-    LOGOUT_SUCCESS,
-    VERIFY_LOCAL_STORAGE,
-  } from "../Actions/actionConstant";
+  LOGIN_SUCCESS,
+  SIGNUP_SUCCESS,
+  LOGOUT_SUCCESS,
+  VERIFY_LOCAL_STORAGE,
+} from "../Actions/actionConstant";
 
 import { saveState, loadState } from "../../Helpers/localStrorage";
 
@@ -11,7 +11,7 @@ const initialState = {
   isAuthenticated: loadState("codeStoreLoggedIn") || false,
   token: "",
   user: loadState("codeStoreUser") || {},
-  inCheckOut: false,
+  firstTimeUser: false,
 };
 
 // Reducers
@@ -37,6 +37,7 @@ const AuthReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.user,
         token: action.token,
+        firstTimeUser: true,
       };
 
     case LOGOUT_SUCCESS:

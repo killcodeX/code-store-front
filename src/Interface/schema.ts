@@ -13,7 +13,6 @@ export const RegistrationSchema = Yup.object().shape({
   password: Yup.string()
     .required("Password is required")
     .min(6, "Password is too short - should be 6 chars minimum"),
-  mobile: Yup.string().required("Required"),
 });
 
 export const LoginSchema = Yup.object().shape({

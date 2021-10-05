@@ -9,6 +9,7 @@ export const VERIFY_LOCAL_STORAGE = "VERIFY_LOCAL_STORAGE";
 //  for post
 export const ThemeChange = "THEME_CHNAGE";
 export const AddPostModal = "ADD_POST_MODAL";
+export const CloseEditModal = "CLOSE_EDIT_MODAL";
 export const DisplayPostModal = "DISPLAY_POST_MODAL";
 export const EditPostModal = "EDIT_POST_MODAL";
 export const DeletePost = "DELETE_POST";

@@ -1,6 +1,7 @@
 import {
   ThemeChange,
   AddPostModal,
+  CloseEditModal,
   DisplayPostModal,
   EditPostModal,
   GetAllPosts,
@@ -44,6 +45,12 @@ export const CodeReducer = (state = initialState, action) => {
       return {
         ...state,
         addP: !state.addP,
+      };
+
+    case CloseEditModal:
+      return {
+        ...state,
+        editP: false,
       };
 
     case DisplayPostModal:

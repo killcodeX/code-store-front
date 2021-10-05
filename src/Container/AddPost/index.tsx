@@ -23,6 +23,7 @@ export default function AddPost() {
     validationSchema: PostSchema,
     onSubmit: (values, { resetForm }) => {
       dispatch(createPost(values));
+      dispatch(getAddPostodal());
     },
   });
 
@@ -37,7 +38,7 @@ export default function AddPost() {
             placeholder="Enter title"
             value={formik.values.title}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.title != ""}
+            isInvalid={formik.errors.title != "" && formik.errors.title != undefined}
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.title}
@@ -51,7 +52,7 @@ export default function AddPost() {
             placeholder="Enter Code description"
             value={formik.values.description}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.description != ""}
+            isInvalid={formik.errors.description != "" && formik.errors.description != undefined}
           />
         </Form.Group>
         <Form.Control.Feedback type="invalid">
@@ -61,11 +62,12 @@ export default function AddPost() {
           <FormLabel>Select Language</FormLabel>
           <Form.Control
             as="select"
+            value={formik.values.language}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.language != ""}
+            isInvalid={formik.errors.language != "" && formik.errors.language != undefined}
           >
             <option value="">Select Any language</option>
-            {allLang.map((item) => {
+            {allLang.map((item: any) => {
               return (
                 <option key={item._id} value={item.language}>
                   {item.language}
@@ -80,12 +82,12 @@ export default function AddPost() {
         <Form.Group className="pt-3 mb-3" controlId="code">
           <FormLabel>Code</FormLabel>
           <Form.Control
-            as="textarea"
             style={{ height: "200px" }}
+            as="textarea"
             placeholder="Enter Code"
             value={formik.values.code}
             onChange={formik.handleChange}
-            isInvalid={formik.errors.code != ""}
+            isInvalid={formik.errors.code != "" && formik.errors.code != undefined}
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.code}

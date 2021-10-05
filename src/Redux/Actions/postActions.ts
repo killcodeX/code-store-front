@@ -1,6 +1,7 @@
 import {
   ThemeChange,
   AddPostModal,
+  CloseEditModal,
   DisplayPostModal,
   EditPostModal,
   GetAllPosts,
@@ -43,10 +44,16 @@ export const getDisplayPostModal = (id) => {
 };
 
 export const getEditPostodal = (id) => {
-  return {
-    type: EditPostModal,
-    payload: id,
-  };
+  if(id == 'closeModal'){
+    return {
+      type: CloseEditModal,
+    }
+  }else{
+    return {
+      type: EditPostModal,
+      payload: id,
+    };
+  }
 };
 
 export const getAddPostodal = () => {
